@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cxhmdhhxah4pn"]
 
 [ext_resource type="Texture2D" uid="uid://cwysk7glaudot" path="res://Assets/Actor/Characters/OrangeNinjaMage/SpriteSheet.png" id="1_2gkss"]
-[ext_resource type="Script" path="res://Player/player.gd" id="1_w0t3v"]
+[ext_resource type="Script" path="res://Characters/Player/player.gd" id="1_w0t3v"]
 
 [sub_resource type="Animation" id="Animation_1arnq"]
 resource_name = "walk_down"
