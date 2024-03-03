@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b25g536a3vfxh"]
+[gd_scene load_steps=12 format=3 uid="uid://b25g536a3vfxh"]
 
 [ext_resource type="Texture2D" uid="uid://buq5ptuatk1ry" path="res://Assets/Actor/Monsters/Slime3/Slime3.png" id="1_jl8fi"]
 [ext_resource type="Script" path="res://Enemies/Slime.gd" id="1_vkk7t"]
@@ -226,6 +226,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_nv1a7"]
 radius = 15.1992
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lspib"]
+
 [node name="Slime" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -259,3 +261,13 @@ position = Vector2(-4.58302e-13, -9)
 rotation = 1.5708
 scale = Vector2(0.553345, 0.635235)
 shape = SubResource("CircleShape2D_nv1a7")
+
+[node name="viewRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="viewRange"]
+position = Vector2(0, -9)
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_lspib")
+
+[connection signal="body_entered" from="viewRange" to="." method="on_viewRange_entered"]
+[connection signal="body_exited" from="viewRange" to="." method="on_viewRange_exited"]

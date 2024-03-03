@@ -1,31 +1,22 @@
 extends CharacterBody2D
 
-var startPos
-var endPos
+var targetPos = self.position
 @onready var animations = $AnimationPlayer
 
 @export var speed = 30
 @export var limit = 0.5
 @export var endPoint:Marker2D
 
-var playerPos
-var targetPos
-@onready var player = get_node("/root/Player")
+@onready var player = get_node("../../Player")
 
-func _ready():
-	startPos = position
-	endPos = endPoint.global_position
+var inside:bool
 
-func updateVelocity():
-	var moveDirection = endPos - position
-	if moveDirection.length() < limit:
-		changeDirection()
-	velocity = moveDirection.normalized()*speed
-
-func changeDirection():
-	var tempEnd = endPos
-	endPos = startPos
-	startPos = tempEnd
+func updateMovment():
+	if inside:
+		targetPos = (player.global_position - position).normalized()
+		velocity = targetPos.normalized()*speed
+	else:
+		velocity = Vector2.ZERO
 
 func updateAnimation():
 	if velocity.length() == 0:
@@ -40,6 +31,15 @@ func updateAnimation():
 		animations.play("walk_" + direction)
 
 func _physics_process(delta):
-	updateVelocity()
+	updateMovment()
 	move_and_slide()
 	updateAnimation()
+
+
+func on_viewRange_entered(body:Node2D):
+	if body == player:
+		inside = true
+
+func on_viewRange_exited(body:Node2D):
+	if body == player:
+		inside = false
