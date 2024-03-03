@@ -4,7 +4,6 @@ extends CharacterBody2D
 
 @export var speed = 30
 @export var limit = 0.5
-@export var endPoint:Marker2D
 
 @onready var player = get_node("../../Player")
 
