@@ -2954,6 +2954,9 @@ position = Vector2(222, 64)
 [node name="Slime2" parent="TileMap" instance=ExtResource("4_rv708")]
 position = Vector2(85, 95)
 
+[node name="Slime3" parent="TileMap" instance=ExtResource("4_rv708")]
+position = Vector2(194, 172)
+
 [node name="Player" parent="TileMap" instance=ExtResource("1_5yvo7")]
 position = Vector2(152, 75)
 
