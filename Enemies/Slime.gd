@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-var targetPos = self.position
 @onready var animations = $AnimationPlayer
 
 @export var speed = 30
@@ -13,8 +12,9 @@ var inside:bool
 
 func updateMovment():
 	if inside:
-		targetPos = (player.global_position - position).normalized()
-		velocity = targetPos.normalized()*speed
+		velocity = (player.global_position - position).normalized()*speed
+		if absf((player.global_position - position).x) < 10 and absf((player.global_position - position).y) < 10:
+			velocity = Vector2.ZERO
 	else:
 		velocity = Vector2.ZERO
 
