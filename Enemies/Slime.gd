@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var speed = 30
 @export var limit = 0.5
 
-@onready var player = get_node("../../Player")
+@onready var player = get_node("../../TileMap/Player")
 
 var inside:bool
 

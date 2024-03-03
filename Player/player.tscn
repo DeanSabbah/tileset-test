@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cxhmdhhxah4pn"]
+[gd_scene load_steps=13 format=3 uid="uid://cxhmdhhxah4pn"]
 
 [ext_resource type="Texture2D" uid="uid://cwysk7glaudot" path="res://Assets/Actor/Characters/OrangeNinjaMage/SpriteSheet.png" id="1_2gkss"]
 [ext_resource type="Script" path="res://Player/player.gd" id="1_w0t3v"]
@@ -90,16 +90,63 @@ size = Vector2(15.9091, 4.76191)
 radius = 7.0
 height = 16.0
 
+[sub_resource type="Animation" id="Animation_tp4mf"]
+resource_name = "Hurt"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.67451, 0, 0.0980392, 0.501961), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aiak6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.67451, 0, 0.0980392, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6daeo"]
+_data = {
+"Hurt": SubResource("Animation_tp4mf"),
+"RESET": SubResource("Animation_aiak6")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_w0t3v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 2
 texture = ExtResource("1_2gkss")
 hframes = 4
 vframes = 7
 frame = 16
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+offset_left = -19.0
+offset_top = -17.0
+offset_right = 21.0
+offset_bottom = 23.0
+color = Color(0.67451, 0, 0.0980392, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -108,6 +155,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 6)
 scale = Vector2(0.880001, 0.84)
 shape = SubResource("RectangleShape2D_eis6q")
@@ -116,6 +164,17 @@ shape = SubResource("RectangleShape2D_eis6q")
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
 shape = SubResource("CapsuleShape2D_nlerv")
 
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6daeo")
+}
+
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]

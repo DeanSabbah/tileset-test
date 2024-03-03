@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkgh0maiubm14"]
+[gd_scene load_steps=13 format=3 uid="uid://dkgh0maiubm14"]
 
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_0py6e"]
 [ext_resource type="PackedScene" uid="uid://cxhmdhhxah4pn" path="res://Player/player.tscn" id="1_5yvo7"]
 [ext_resource type="Texture2D" uid="uid://b4hnu6hyxdo81" path="res://Assets/Backgrounds/Tilesets/TilesetFloor.png" id="3_6avoi"]
 [ext_resource type="PackedScene" uid="uid://b25g536a3vfxh" path="res://Enemies/Slime.tscn" id="4_rv708"]
 [ext_resource type="Texture2D" uid="uid://djjaiylppdds7" path="res://Assets/Backgrounds/Tilesets/TilesetNature.png" id="4_y6r5u"]
 [ext_resource type="Texture2D" uid="uid://cchyyduky2c0s" path="res://Assets/Backgrounds/Animated/Plant/SpriteSheet16x16.png" id="5_vl8iy"]
 [ext_resource type="Script" path="res://Scenes/follow cam.gd" id="6_lkofd"]
+[ext_resource type="PackedScene" uid="uid://w3yh7peho5hf" path="res://Player/Health/hearts_container.tscn" id="7_d5yo4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vficd"]
 texture = ExtResource("3_6avoi")
@@ -2931,6 +2933,7 @@ sources/3 = SubResource("TileSetAtlasSource_wtm1u")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_0py6e")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -2951,14 +2954,22 @@ position = Vector2(222, 64)
 [node name="Slime2" parent="TileMap" instance=ExtResource("4_rv708")]
 position = Vector2(85, 95)
 
-[node name="Player" parent="." instance=ExtResource("1_5yvo7")]
+[node name="Player" parent="TileMap" instance=ExtResource("1_5yvo7")]
 position = Vector2(152, 75)
 
-[node name="follow cam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
+[node name="follow cam" type="Camera2D" parent="TileMap/Player" node_paths=PackedStringArray("tilemap")]
 limit_left = 0
 limit_top = 0
 limit_right = 592
 limit_bottom = 384
 position_smoothing_speed = 2.0
 script = ExtResource("6_lkofd")
-tilemap = NodePath("../../TileMap")
+tilemap = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HeartsContainer" parent="CanvasLayer" instance=ExtResource("7_d5yo4")]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 7.0
+offset_bottom = 6.0
