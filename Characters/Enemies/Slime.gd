@@ -1,10 +1,5 @@
 extends Enemy
 
-func _ready():
-	speed = 30
-	limit = 0.5
-	lungePower = 180
-
 func attack():
 	velocity = (player.position - position).normalized()*lungePower
 	if(!animations.is_playing()):
@@ -21,3 +16,5 @@ func _physics_process(delta):
 		updateMovment()
 		updateAnimation()
 		move_and_slide()
+	else:
+		pass

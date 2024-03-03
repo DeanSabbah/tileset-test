@@ -131,8 +131,12 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
+scale = Vector2(1.09789, 0.952644)
 collision_mask = 3
 script = ExtResource("1_w0t3v")
+knockbackPower = 800
+speed = 45
+maxHealth = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
@@ -173,6 +177,12 @@ libraries = {
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 784
+limit_bottom = 384
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]

@@ -1,8 +1,16 @@
 class_name Character extends CharacterBody2D
 
+@export var speed:int
+@export var maxHealth:int
+@onready var currentHealth:int = maxHealth
+
 @onready var animations = $AnimationPlayer
 
 var direction
+
+func updateMovement():
+	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = moveDirection*speed
 
 func updateAnimation():
 	if velocity.length() == 0:

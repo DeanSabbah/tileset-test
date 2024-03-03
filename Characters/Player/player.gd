@@ -2,24 +2,16 @@ class_name Player extends Character
 
 signal healthChanged(curHealth:int)
 
-@export var speed:int = 45
-@export var maxHealth = 5
-@onready var currentHealth:int = maxHealth
-
 @onready var effects = $Effects
 @onready var hurtTimer = $HurtTimer
 
-@export var knockbackPower = 800
+@export var knockbackPower:int
 
 var isHurt:bool = false
 var enemyCols = []
 
 func _ready():
 	effects.play("RESET")
-
-func updateMovement():
-	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = moveDirection*speed
 
 func handleCollision():
 	for i in get_slide_collision_count():

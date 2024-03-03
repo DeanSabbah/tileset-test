@@ -1,8 +1,5 @@
 class_name Enemy extends Character
 
-
-@export var speed:int
-@export var limit:float
 @export var lungePower:int
 
 @onready var player = get_node("/root/World/TileMap/Player")
