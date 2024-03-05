@@ -2951,6 +2951,7 @@ layer_2/tile_data = PackedInt32Array(196610, 1, 0, 589841, 1, 0, 196623, 1, 0, 5
 
 [node name="Player" parent="TileMap" instance=ExtResource("1_5yvo7")]
 position = Vector2(157, 85)
+knockbackPower = 1000
 
 [node name="Slime" parent="TileMap" instance=ExtResource("4_rv708")]
 position = Vector2(222, 64)
