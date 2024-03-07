@@ -39,7 +39,9 @@ func _on_hurtbox_area_entered(area:Area2D):
 		enemyCols.append(area)
 
 func knockBack(enemyPosition):
-	var knockbackDirection = (enemyPosition - position).normalized()*knockbackPower
+	var tempPos = position
+	tempPos.y += 3
+	var knockbackDirection = (enemyPosition - tempPos).normalized()*knockbackPower
 	velocity = -knockbackDirection
 	move_and_slide()
 

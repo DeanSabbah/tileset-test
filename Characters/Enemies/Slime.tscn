@@ -429,7 +429,9 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_vkk7t")
-lungePower = 180
+lungePower = 60
+attackRange = 22
+viewRange = 48
 speed = 30
 maxHealth = 2
 
@@ -464,7 +466,6 @@ position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ViewRange"]
 position = Vector2(0, -9)
-scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_lspib")
 
 [node name="AttackRange" type="Area2D" parent="."]
@@ -472,7 +473,6 @@ position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(0, -9)
-scale = Vector2(2.25, 2.25)
 shape = SubResource("CircleShape2D_i74kw")
 
 [node name="Cooldown" type="Timer" parent="."]

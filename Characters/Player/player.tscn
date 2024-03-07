@@ -87,7 +87,7 @@ _data = {
 size = Vector2(15.9091, 4.76191)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rdj2p"]
-size = Vector2(16, 10.0497)
+size = Vector2(16, 5.85088)
 
 [sub_resource type="Animation" id="Animation_tp4mf"]
 resource_name = "Hurt"
@@ -131,11 +131,11 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(0, -7)
+position = Vector2(0, -8)
 scale = Vector2(1.09789, 0.952644)
 collision_mask = 3
 script = ExtResource("1_w0t3v")
-knockbackPower = 800
+knockbackPower = 1200
 speed = 45
 maxHealth = 5
 
@@ -146,10 +146,10 @@ hframes = 4
 vframes = 7
 
 [node name="ColorRect" type="ColorRect" parent="Sprite2D"]
-offset_left = -19.0
-offset_top = -17.0
-offset_right = 21.0
-offset_bottom = 23.0
+offset_left = -7.0
+offset_top = -8.0
+offset_right = 7.0
+offset_bottom = 9.0
 color = Color(0.67451, 0, 0.0980392, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -163,11 +163,11 @@ position = Vector2(0, 6)
 scale = Vector2(0.880001, 0.84)
 shape = SubResource("RectangleShape2D_eis6q")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, 3.97515)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 6.07457)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rdj2p")
 
@@ -186,5 +186,5 @@ limit_top = 0
 limit_right = 784
 limit_bottom = 384
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="area_exited" from="Hurtbox" to="." method="_on_hurtbox_area_exited"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_exited" from="Hitbox" to="." method="_on_hurtbox_area_exited"]

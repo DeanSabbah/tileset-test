@@ -3,7 +3,9 @@ extends Enemy
 @export var lungePower:int
 
 func attack():
-	velocity = (player.global_position - position).normalized()*lungePower
+	var attackMove = player.global_position
+	attackMove.y += 3
+	velocity = (attackMove - position).normalized()*lungePower
 	if(!animations.is_playing()):
 		animations.play("attack_" + direction)
 	await get_tree().create_timer(0.4).timeout
