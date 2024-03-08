@@ -1,2 +1,2 @@
-extends Enemy
+extends NPC
 

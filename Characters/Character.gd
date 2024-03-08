@@ -8,9 +8,9 @@ class_name Character extends CharacterBody2D
 
 var direction
 
-func updateMovement():
+func updateMovement(delta):
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = moveDirection*speed
+	velocity = moveDirection*(speed*delta*100)
 
 func updateAnimation():
 	if velocity.length() == 0:

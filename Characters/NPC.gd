@@ -1,4 +1,4 @@
-class_name Enemy extends Character
+class_name NPC extends Character
 
 @onready var player = get_node("/root/World/TileMap/Player")
 @onready var cooldownTimer = $Cooldown
@@ -14,14 +14,14 @@ func _ready():
 	$AttackRange/CollisionShape2D.shape.radius = attackRange
 	direction = "down"
 
-func updateMovment():
+func updateMovment(delta):
 	if inside and !inRange:
-		velocity = (player.global_position - position).normalized()*speed
+		velocity = (player.global_position - position).normalized()*(speed*delta*100)
 	else:
 		velocity = Vector2.ZERO
 
 #Player must have 3 added to y pos for attacks to be acurate
-func attack():
+func attack(delta):
 	pass
 
 func on_viewRange_entered(body:Node2D):
@@ -43,9 +43,9 @@ func _on_attack_range_body_exited(body:Node2D):
 func _physics_process(delta):
 	if cooldownTimer.is_stopped() and inRange:
 		animations.stop()
-		attack()
+		attack(delta)
 	elif animations.current_animation != "attack_" + direction:
-		updateMovment()
+		updateMovment(delta)
 		updateAnimation()
 		move_and_slide()
 	else:

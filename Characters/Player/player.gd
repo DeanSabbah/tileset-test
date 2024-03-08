@@ -19,7 +19,7 @@ func handleCollision():
 		var collider = collision.get_collider()
 		print_debug(collider.name)
 
-func hurtByEnemy(area):
+func hurtByEnemy(area, delta):
 	currentHealth -= 1
 	if currentHealth <= 0:
 		currentHealth = maxHealth
@@ -27,7 +27,7 @@ func hurtByEnemy(area):
 	healthChanged.emit(currentHealth)
 	isHurt = true
 
-	knockBack(area.get_parent().position)
+	knockBack(area.get_parent().position, delta)
 	hurtTimer.start()
 	effects.play("Hurt")
 	await hurtTimer.timeout
@@ -38,10 +38,10 @@ func _on_hurtbox_area_entered(area:Area2D):
 	if area.name == "Hitbox":
 		enemyCols.append(area)
 
-func knockBack(enemyPosition):
+func knockBack(enemyPosition, delta):
 	var tempPos = position
 	tempPos.y += 3
-	var knockbackDirection = (enemyPosition - tempPos).normalized()*knockbackPower
+	var knockbackDirection = (enemyPosition - tempPos).normalized()*(knockbackPower*delta*100)
 	velocity = -knockbackDirection
 	move_and_slide()
 
@@ -49,9 +49,9 @@ func _on_hurtbox_area_exited(area:Area2D):
 	enemyCols.erase(area)
 
 func _physics_process(delta):
-	updateMovement()
+	updateMovement(delta)
 	move_and_slide()
 	updateAnimation()
 	if !isHurt:
 		for enemyArea in enemyCols:
-			hurtByEnemy(enemyArea)
+			hurtByEnemy(enemyArea, delta)

@@ -429,10 +429,10 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_vkk7t")
-lungePower = 60
+lungePower = 100
 attackRange = 22
 viewRange = 48
-speed = 30
+speed = 20
 maxHealth = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
