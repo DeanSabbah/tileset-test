@@ -135,7 +135,7 @@ position = Vector2(0, -8)
 scale = Vector2(1.09789, 0.952644)
 collision_mask = 3
 script = ExtResource("1_w0t3v")
-knockbackPower = 1200
+knockbackPower = 1000
 speed = 35
 maxHealth = 5
 
@@ -180,9 +180,9 @@ wait_time = 0.6
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 0
+limit_left = -1874919424
 limit_top = 0
-limit_right = 784
+limit_right = 276447232
 limit_bottom = 384
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hurtbox_area_entered"]

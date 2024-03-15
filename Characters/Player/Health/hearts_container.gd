@@ -1,10 +1,12 @@
 extends HBoxContainer
 
 @onready var heartGuiClass = preload("res://Characters/Player/Health/heart_gui.tscn")
-
+@onready var player = get_node("/root/World/Player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	setMaxHearts(player.maxHealth)
+	updateHearts(player.currentHealth)
+	player.healthChanged.connect(self.updateHearts)
 
 func setMaxHearts(maxIn:int):
 	for i in range(maxIn):
