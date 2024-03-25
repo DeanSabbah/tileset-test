@@ -1,9 +1,9 @@
-extends NPC
+extends Enemy
 
 @export var lungePower:int
 
 func attack(delta):
-	var attackMove = player.global_position
+	var attackMove = player.position
 	attackMove.y += 3
 	velocity = (attackMove - position).normalized()*(lungePower*delta*100)
 	if(!animations.is_playing()):

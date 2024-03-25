@@ -1,6 +1,6 @@
-class_name NPC extends Character
+class_name Enemy extends Character
 
-@onready var player = get_node("/root/World/Player")
+@onready var player = get_node("/root/World/TileMap/Player")
 @onready var cooldownTimer = $Cooldown
 
 @export var attackRange:int
@@ -20,7 +20,7 @@ func updateMovment(delta):
 	else:
 		velocity = Vector2.ZERO
 
-#Player must have 3 added to y pos for attacks to be acurate
+# Added 4 to y pos for attacks to be more acurate
 func attack(delta):
 	pass
 
@@ -48,5 +48,3 @@ func _physics_process(delta):
 		updateMovment(delta)
 		updateAnimation()
 		move_and_slide()
-	else:
-		pass
